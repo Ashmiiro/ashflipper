@@ -1,0 +1,6 @@
+{
+  "name": "Ash Traders Hub",
+  "description": "Premium Forex & Crypto education and community in Uganda, led by financial analyst Ash Flipper.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
