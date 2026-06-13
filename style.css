@@ -1,0 +1,58 @@
+/* Custom CSS Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0C0C0E;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom font styles utilizing Space Grotesk and JetBrains Mono */
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Form inputs styling */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Custom glow effect */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+/* Hide scrollbars for sliders or list boxes */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
