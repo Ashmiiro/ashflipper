@@ -139,6 +139,73 @@ export default function Home() {
   const [mins, setMins] = useState<string>('45');
   const [secs, setSecs] = useState<string>('19');
 
+  // Kampala Physical Campus & Community Gallery
+  const GALLERY_IMAGES = [
+    {
+      id: 1,
+      title: "Ash Flipper Live Kampala Seminar",
+      description: "Over 150+ regional students attending our live price action and algorithmic sweep masterclasses in Kampala.",
+      category: "SEMINARS",
+      badge: "LIVE BOOT CAMPS",
+      url: "https://lh3.googleusercontent.com/d/1lZnUJL2TbbolDqYs2Vum2YGv6QmLsIkH"
+    },
+    {
+      id: 2,
+      title: "Daily Masterclass Board Briefing",
+      description: "Live mapping of daily liquidity traps, premium discount boundaries, and institutional pools.",
+      category: "WORKSPACES",
+      badge: "ORDER FLOW LABS",
+      url: "https://lh3.googleusercontent.com/d/1wzmN9S715o2s_iUfRfaZsYf2RtHcl6ty"
+    },
+    {
+      id: 3,
+      title: "Kampala Academy Physical Trading Lab",
+      description: "Our state-of-the-art physical lab where regional prop-funded students execute and analyze trades side-by-side.",
+      category: "WORKSPACES",
+      badge: "CAMPUS LABS",
+      url: "https://lh3.googleusercontent.com/d/10rHTbEuOg40gwuKtocL6-RyUXn1jQWZ-"
+    },
+    {
+      id: 4,
+      title: "Prop-Funded Traders Masterclass Session",
+      description: "Traders reviewing risk management rules, passing FTMO/MFF funding challenges in collaborative sprints.",
+      category: "COMMUNITY",
+      badge: "SUCCESS HUNTERS",
+      url: "https://lh3.googleusercontent.com/d/1N41HuPO6NQPy5DtTQ-hXNJCfx92aQic3"
+    },
+    {
+      id: 5,
+      title: "VIP Mentorship Live Group Showcase",
+      description: "Miiro Ashiraf (C.E.O) in active mentorship mode, walking VIP members through high-probability entries.",
+      category: "SEMINARS",
+      badge: "VIP INTENSIVE",
+      url: "https://lh3.googleusercontent.com/d/1aqt2pWZhtNXWgU085maqTyvf_T7luNOT"
+    },
+    {
+      id: 6,
+      title: "East African Trader Meetups & Summits",
+      description: "Bringing together Kampala, Kigali, and Nairobi's finest financial minds to forge collaborative prop desks.",
+      category: "COMMUNITY",
+      badge: "NETWORKING SUMMITS",
+      url: "https://lh3.googleusercontent.com/d/11ULVn9D6h5wJz_UIm1W9SWGg4BBlgtvK"
+    },
+    {
+      id: 7,
+      title: "C.E.O Live Analytical Stream Setup",
+      description: "The advanced control center where global livestream analytical coverage of gold and macro announcements is projected.",
+      category: "WORKSPACES",
+      badge: "PRO STREAM AREA",
+      url: "https://lh3.googleusercontent.com/d/1L09KUCXtFTym_DlWpcj3vk7hHZk-CcVH"
+    }
+  ];
+
+  const [selectedGalleryCategory, setSelectedGalleryCategory] = useState<'ALL' | 'SEMINARS' | 'WORKSPACES' | 'COMMUNITY'>('ALL');
+  const [lightboxImage, setLightboxImage] = useState<typeof GALLERY_IMAGES[0] | null>(null);
+
+  const filteredGalleryImages = selectedGalleryCategory === 'ALL'
+    ? GALLERY_IMAGES
+    : GALLERY_IMAGES.filter(img => img.category === selectedGalleryCategory);
+
   // Load state from localStorage on hydration
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -376,28 +443,28 @@ export default function Home() {
       duration: "18 minutes",
       description: "How retail chart patterns are constructed as counterparts to central institutional pools. We introduce standard price sweeps.",
       isFree: true,
-      videoPlaceholder: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800"
+      videoPlaceholder: "https://lh3.googleusercontent.com/d/1lZnUJL2TbbolDqYs2Vum2YGv6QmLsIkH"
     },
     {
       title: "Module 2: Liquidity Capture Models & Market Structure Shift (MSS)",
       duration: "25 minutes",
       description: "Identifying real displacement candles that break structure from low volume retail consolidation patterns.",
       isFree: false,
-      videoPlaceholder: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=800"
+      videoPlaceholder: "https://lh3.googleusercontent.com/d/1wzmN9S715o2s_iUfRfaZsYf2RtHcl6ty"
     },
     {
       title: "Module 3: High-Probability Fair Value Gaps (FVG) Entries",
       duration: "21 minutes",
       description: "Setting limit orders on specific algorithmic market imbalances. Calculate standard premium discount ranges.",
       isFree: false,
-      videoPlaceholder: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=800"
+      videoPlaceholder: "https://lh3.googleusercontent.com/d/10rHTbEuOg40gwuKtocL6-RyUXn1jQWZ-"
     },
     {
       title: "Module 4: Kampala Prop Desk Framework: Passing the $100K Challenge",
       duration: "30 minutes",
       description: "Step-by-step risk management logic to defend drawdowns and secure certified funding under FTMO guidelines.",
       isFree: false,
-      videoPlaceholder: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800"
+      videoPlaceholder: "https://lh3.googleusercontent.com/d/1N41HuPO6NQPy5DtTQ-hXNJCfx92aQic3"
     }
   ];
 
@@ -450,7 +517,17 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-[#0C0C0E] text-white selection:bg-[#00E5FF]/20 selection:text-[#00E5FF] font-sans antialiased relative overflow-x-hidden">
+    <div 
+      className="min-h-screen text-white selection:bg-[#00E5FF]/20 selection:text-[#00E5FF] font-sans antialiased relative overflow-x-hidden"
+      style={{
+        backgroundImage: "linear-gradient(to bottom, rgba(12, 12, 14, 0.93), rgba(12, 12, 14, 0.93)), url('https://lh3.googleusercontent.com/d/1DwOmeUZ5LH2jn9byoya89f95EzZd0b8R')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundColor: '#0C0C0E'
+      }}
+    >
       
       {/* Background radial ambient lights */}
       <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
@@ -1095,6 +1172,95 @@ export default function Home() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ASH TRADERS HUB - KAMPALA LIFE & STUDENT GALLERY */}
+      <section id="gallery" className="py-24 bg-[#0a0a0c]/40 border-t border-white/5 relative z-10 font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-[#FFD700] text-xs font-mono font-semibold uppercase tracking-widest inline-flex items-center gap-1.5 bg-[#FFD700]/10 px-3 py-1 rounded-full border border-[#FFD700]/20">
+                <Sparkles className="w-3.5 h-3.5" /> Kampala Physical Headquarters & Active Community
+              </span>
+              <h2 className="font-semibold text-3xl sm:text-4.5xl text-white mt-4 font-mono leading-tight">
+                Hub Gallery & <span className="text-[#FFD700]">Live Action Logs</span>
+              </h2>
+              <p className="mt-4 text-white/60 text-sm sm:text-base">
+                Real moments from our certified Kampala trading floor, live intensive masterclasses, and regional success gatherings. See our vibrant East African community in full motion.
+              </p>
+            </div>
+
+            {/* Gallery Category Filter Tabs */}
+            <div className="flex flex-wrap gap-2 shrink-0">
+              {(['ALL', 'SEMINARS', 'WORKSPACES', 'COMMUNITY'] as const).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedGalleryCategory(cat)}
+                  className={`px-4 py-2 text-xs font-mono font-bold rounded-xl border transition-all ${
+                    selectedGalleryCategory === cat
+                      ? 'bg-[#FFD700] border-[#FFD700] text-black shadow-[0_0_15px_rgba(255,215,0,0.25)]'
+                      : 'bg-white/5 border-white/10 hover:bg-white/10 text-white/70'
+                  }`}
+                >
+                  {cat === 'ALL' ? 'Show All' : cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {filteredGalleryImages.map((img) => (
+                <motion.div
+                  key={img.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -6 }}
+                  className="group bg-[#161618] border border-white/5 rounded-3xl overflow-hidden cursor-pointer flex flex-col justify-between"
+                  onClick={() => setLightboxImage(img)}
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900 border-b border-white/5">
+                    <img
+                      src={img.url}
+                      alt={img.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                    
+                    <span className="absolute top-4 left-4 text-[10px] font-mono font-bold tracking-wider text-black bg-[#FFD700] px-2.5 py-1 rounded-lg">
+                      {img.badge}
+                    </span>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-base font-bold text-white tracking-tight group-hover:text-[#FFD700] transition-colors">
+                      {img.title}
+                    </h3>
+                    <p className="mt-2 text-xs text-white/50 leading-relaxed line-clamp-2">
+                      {img.description}
+                    </p>
+                    <div className="mt-4 flex items-center justify-between text-[11px] text-white/40 font-mono">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 text-[#FFD700]" /> Verified Live Hub Event
+                      </span>
+                      <span className="text-[#FFD700] flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                        Enlarge View <ChevronRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
         </div>
       </section>
 
@@ -2235,6 +2401,86 @@ export default function Home() {
               )}
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* KAMPALA COMMUNITY GALLERY LIGHTBOX OVERLAY */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[#0c0c0e]/95 backdrop-blur-md z-[100] flex items-center justify-center p-4 sm:p-6"
+            onClick={() => setLightboxImage(null)}
+          >
+            {/* Close button in top-right */}
+            <button 
+              className="absolute top-6 right-6 text-white/60 hover:text-white bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 transition-colors z-[110]"
+              onClick={() => setLightboxImage(null)}
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
+              className="relative max-w-5xl w-full bg-[#161618] border border-white/10 rounded-3xl overflow-hidden shadow-2xl z-[105]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12">
+                {/* Large high-res image view */}
+                <div className="lg:col-span-8 bg-neutral-950 aspect-[4/3] sm:aspect-[16/10] relative flex items-center justify-center">
+                  <img
+                    src={lightboxImage.url}
+                    alt={lightboxImage.title}
+                    className="w-full h-full object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                  
+                  {/* Category badge */}
+                  <span className="absolute top-5 left-5 text-[10px] font-mono font-black tracking-widest uppercase bg-[#FFD700] text-black px-3 py-1.5 rounded-xl border border-black/10">
+                    {lightboxImage.badge}
+                  </span>
+                </div>
+
+                {/* Info pane */}
+                <div className="lg:col-span-4 p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-white/5 bg-[#161618]">
+                  <div>
+                    <span className="text-xs font-mono font-semibold text-[#FFD700] uppercase tracking-wider block">Verified Campus Event Log</span>
+                    <h3 className="font-semibold text-2xl text-white mt-3 font-mono leading-snug">
+                      {lightboxImage.title}
+                    </h3>
+                    <div className="w-12 h-[1px] bg-[#FFD700]/30 my-5"></div>
+                    <p className="text-sm text-white/60 font-sans leading-relaxed">
+                      {lightboxImage.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-white/5">
+                    <div className="flex items-center gap-3 text-white/40 text-xs font-sans">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-[#FFD700]">
+                        <Calendar className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <span className="block text-white/50 font-semibold">Kampala Physical Hub</span>
+                        <span className="block text-[10px] font-mono mt-0.5 text-white/30">Miiro Ashiraf Analyst Desk</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setLightboxImage(null)}
+                      className="mt-6 w-full text-center py-3.5 rounded-xl bg-[#FFD700] hover:bg-[#ffe240] text-black font-extrabold text-xs font-mono transition-all shadow-[0_0_15px_rgba(255,215,0,0.2)]"
+                    >
+                      Return to Hub Gallery
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
